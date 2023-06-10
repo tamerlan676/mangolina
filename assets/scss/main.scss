@@ -1,0 +1,92 @@
+  @font-face {
+    font-family: "Light";
+    src: local("Light"),
+     url(~/assets/fonts/Inter-Light.ttf) format("truetype");
+  }
+  @font-face {
+    font-family: "Regular";
+    src: local("Regular"),
+     url(~/assets/fonts/Inter-Regular.ttf) format("truetype");
+  }
+  @font-face {
+    font-family: "Medium";
+    src: local("Medium"),
+     url(~/assets/fonts/Inter-Medium.ttf) format("truetype");
+  }
+  @font-face {
+    font-family: "Semi-Bold";
+    src: local("Semi-Bold"),
+     url(~/assets/fonts/Inter-SemiBold.ttf) format("truetype");
+  }
+
+*{
+    padding: 0;
+    margin: 0;
+    font-family: inherit;
+    box-sizing: border-box;
+    font-family: "Regular";
+    line-height: 24px;
+    text-decoration: none;
+}
+
+h1, h2, h3 {
+    line-height: 35px;
+}
+
+.orange-btn{
+  display: flex;
+  align-items: center;
+  color: #fff;
+  justify-content: center;
+  border-radius: 50px;
+  height: 50px;
+  width: 100%;
+  margin-bottom: 16px;
+  text-transform: uppercase;
+  background: #FFBF60;
+  cursor: pointer;
+  @media(min-width: 992px){
+    width: 230px;
+  }
+}
+.yellow-btn{
+  display: flex;
+  align-items: center;
+  color: #fff;
+  justify-content: center;
+  background: #FDDF55;
+  text-decoration: none;
+  border-radius: 50px;
+  height: 50px;
+  width: 100%;
+  text-transform: uppercase;
+  cursor: pointer;
+  @media(min-width: 992px){
+    width: 230px;
+  }
+}
+
+img{
+  max-width: 100%;
+}
+.section-title{
+  font-size: 33px;
+  margin-bottom: 24px;
+  font-family: "Medium";
+  line-height: 40px;
+  position: relative;
+  @media(min-width: 992px){
+      font-size: 32px;
+  }
+}
+
+.phn{
+  text-decoration: none;
+  color: #675CA8;
+  font-family: 'Bold';
+}
+
+button{
+  border: none;
+  cursor: pointer
+}
