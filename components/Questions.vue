@@ -125,7 +125,7 @@ export default {
         color: #000;
         &.open{
             height: fit-content;
-            padding: 5px 0;
+            padding: 15px 0;
         }
    }
 }

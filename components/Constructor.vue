@@ -39,7 +39,10 @@ export default {
         background: #FDDF55;
         display: block;
         z-index: -1;
-        left: 377px;
+        @media(min-width: 992px){
+            text-align: center;
+            left: 377px;
+        }
     }
     p{
         margin-bottom: 24px;
@@ -49,7 +52,7 @@ export default {
         display: block;
         margin: 0 auto 40px;
         @media(min-width: 768px){
-            width: 600px;
+            width: 340px;
         }
     }
     a{

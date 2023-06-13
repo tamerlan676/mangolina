@@ -37,7 +37,7 @@ export default {
     padding: 80px 16px;
     background: #fff;
     @media(min-width: 992px){
-        padding: 120px 32px;
+        padding: 120px 0;
     }
     @media(min-width: 1200px){
         margin: 0 auto;

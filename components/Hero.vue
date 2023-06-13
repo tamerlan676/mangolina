@@ -67,6 +67,7 @@
            @media(min-width: 992px){
               display: flex;
               width: 1120px;
+              padding: 60px 0;
               margin: 0 auto;
               align-items: center;
         }
@@ -75,20 +76,13 @@
           .heart{
             position: absolute;
             left: 50px;
-            font-size: 30px;
-            top:50px;
+            font-size: 40px;
+            top:72px;
+            animation: pulseEffect 2s infinite;
+            animation-delay: 1s;
+            opacity: 0.7;
             @media(min-width: 992px){
               left: 100px;
-            }
-          }
-          .fire{
-            position: absolute;
-            top: 0;
-            right: 120px;
-            font-size: 30px;
-            @media(min-width: 992px){
-              right: 176px;
-              top: 25px;
             }
           }
           .happy{
@@ -96,17 +90,49 @@
             top: 20px;
             right: 200px;
             font-size: 40px;
-            @media(min-width: 992px){
+            animation: pulseEffect 2s infinite;
+            animation-delay: 1.7s;
+            opacity: 0.7;
+            @media(min-width: 1200px){
               left: 200px;
+              right: 300px
+            }
+          }
+          .fire{
+            position: absolute;
+            top: 18px;
+            right: 120px;
+            font-size: 40px;
+            animation: pulseEffect 2s infinite;
+            animation-delay: 2s;
+            opacity: 0.7;
+            @media(min-width: 992px){
+              right: 176px;
+              top: 25px;
             }
           }
           .gift{
             position: absolute;
-            top: 50px;
-            font-size: 35px;
+            top: 60px;
+            font-size: 40px;
             right: 50px;
+            animation: pulseEffect 2s infinite;
+            animation-delay: 2.3s;
+            opacity: 0.7;
             @media(min-width: 992px){
               right: 80px;
+            }
+          }
+
+          @keyframes pulseEffect {
+            0% {
+              transform: scale(1);
+            }
+            50% {
+              transform: scale(1.2);
+            }
+            100% {
+              transform: scale(1);
             }
           }
         }
