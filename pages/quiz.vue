@@ -1,14 +1,14 @@
 <template lang="pug">
 div
     Header
-    .quiz
+    form.quiz(@submit.prevent="submitForm")
         transition(name="slide")
             .step(v-if="currentStep === 1")
                 .step-info Шаг 1 из 4
                 h2 Выберите бюджет для вашей корзины
                 .prices-wrapper
                   .price(v-for="price, index in prices" :key="index" @click="getPrice(price)" :class="{ active: basketPrice == price }") {{ price }} ₽
-                button.yellow-btn(@click="nextStep") Далее
+                a.yellow-btn(@click="nextStep") Далее
         transition(name="slide")
               .step(v-if="currentStep === 2")
                 .step-info Шаг 2 из 4
@@ -17,31 +17,32 @@ div
                   .fruit(v-for="fruit, index in fruits" :key="index" @click="getFruit(fruit.title)" :class="{ active: fruitInArray(fruitsList, fruit.title) }") 
                     img(:src="fruit.img")
                     .title {{ fruit.title }} 
-                button.yellow-btn(@click="nextStep") Далее
+                a.yellow-btn(@click="nextStep") Далее
         transition(name="slide")
               .step(v-if="currentStep === 3")
                 .step-info Шаг 3 из 4
                 h2 К каждой корзине мы добавляем открытку. Укажите что на ней написать
                 textarea.text-area(placeholder="Введите текст поздравления тут" v-model="greetings")
-                button.yellow-btn(@click="nextStep") Далее
+                a.yellow-btn(@click="nextStep") Далее
         transition(name="slide")
               .step(v-if="currentStep === 4")
                 .step-info Шаг 4 из 4
                 h2 Если у вас остались пожелания по корзине, напишите их в этом поле
                 textarea.text-area(placeholder="Введите текст ваших пожеланий" v-model="comments")
-                button.yellow-btn(@click="nextStep") Далее
+                a.yellow-btn(@click="nextStep") Далее
         transition(name="slide")
               .step(v-if="currentStep === 5")
                 h2 Мы учтем все ваши пожелания! 
                 .field
-                  input(type="text" placeholder="Введите имя")
+                  input(type="text" v-model="name" placeholder="Введите имя")
                 .field
-                  input(type="tel" placeholder="Введите номер телефона")
-                button.yellow-btn(@click="nextStep") Отправить
+                  input(type="tel" v-model="phone" placeholder="Введите номер телефона")
+                button.yellow-btn(type="submit") Отправить
     Footer
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   data() {
     return {
@@ -118,8 +119,11 @@ export default {
           exp: true,
         },
       ],
+      phone: '',
       greetings: '',
-      comments: ''
+      comments: '',
+      price: '',
+      name: '',
     };
   },
   methods: {
@@ -127,6 +131,28 @@ export default {
       this.currentStep++;
       location.href="#"
     },
+    submitForm() {
+            const order = {
+                name: this.name,
+                phone: this.phone,  
+                price: this.basketPrice,
+                fruits: this.fruitsList,
+                greetings: this.greetings,
+                comments: this.comments,
+            }
+            const message = `Заказ корзины через конструктор: \n Имя: ${order.name} \n Телефон ${order.phone} \n Бюджет ${order.price} \n Фрукты ${order.fruits} \n Текст ${order.greetings} \n Комментарий ${order.comments}`
+            axios.post('https://api.telegram.org/bot5561581589:AAHOqK8z6VzxVouFK0m-pC9u-HruGIPALfs/sendMessage', {
+            chat_id: '-1001187047227',
+            parse_mode: 'html',
+            text: message
+            }
+            ).then(
+              function changeLocation() {
+                location.href='/success'
+                },
+                setTimeout(this.changeLocation, 10000),
+            )
+        },
     prevStep() {
       this.currentStep--;
     },
